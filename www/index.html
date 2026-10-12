@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English · 3-сынып</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E8F4FB;--ink:#13383F;--card:#fff;--a:#0E7C7B;--b:#FFC93C;--c:#FF6B5B;--ok:#2BA66A;--bad:#E5484D;--line:#B9DCEB;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F2A30;--ink:#E9F7F7;--card:#173A42;--line:#2A5560}}
+:root[data-theme="dark"]{--bg:#0F2A30;--ink:#E9F7F7;--card:#173A42;--line:#2A5560}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,'Segoe UI',Roboto,sans-serif;font-weight:600;font-size:18px}
+#app{max-width:480px;margin:0 auto;padding:16px}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+header{text-align:center;padding:12px 0 18px;position:relative}
+h1{margin:0;font-size:3rem;font-weight:900;letter-spacing:-.02em;color:var(--a)}
+.kk{margin:4px 0 0;opacity:.8}
+.st{display:inline-block;background:var(--b);color:#13383F;border-radius:20px;padding:2px 12px;font-weight:900;font-size:1rem}
+header .st{margin-top:10px}
+.menu{display:grid;gap:12px}
+.tile{display:grid;grid-template-columns:56px 1fr;grid-template-rows:auto auto;column-gap:14px;text-align:left;align-items:center;background:var(--card);border:3px solid var(--line);border-radius:22px;padding:14px 16px}
+.tile .ic{grid-row:1/3;font-size:2.4rem;text-align:center}
+.tile b{font-size:1.3rem;font-weight:900}
+.tile small{opacity:.75;font-size:.9rem}
+.tile.done{border-color:var(--ok)}
+.tile:active{transform:scale(.98)}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.top h2{flex:1;margin:0;font-size:1.4rem;font-weight:900}
+.ghost{font-size:1.5rem;width:44px;height:44px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
+.card{background:var(--card);border:3px solid var(--line);border-radius:26px;padding:20px;text-align:center;margin-bottom:14px}
+.em{font-size:6rem;line-height:1.1}
+.card .en{font-size:2.6rem;font-weight:900;color:var(--a)}
+.card .kz{font-size:1.5rem;margin:4px 0 10px}
+.card .kz.big{font-size:1.9rem;font-weight:900;padding:12px 0}
+.prog{font-size:.9rem;opacity:.7;margin-bottom:6px}
+.say{background:var(--b);color:#13383F;border-radius:30px;padding:10px 22px;font-weight:900;margin-top:6px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nav button{padding:12px 20px;border-radius:30px;background:var(--card);border:3px solid var(--line);font-weight:800}
+.nav button:disabled{opacity:.4}
+.nav .pri,.pri{background:var(--a);color:#fff;border-color:var(--a)}
+.slots{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:10px 0}
+.slot{width:42px;height:50px;border-bottom:4px solid var(--a);font-size:2rem;font-weight:900;display:grid;place-items:center}
+.keys{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:12px}
+.key{width:52px;height:56px;border-radius:14px;background:var(--b);color:#13383F;font-size:1.6rem;font-weight:900}
+.key:disabled{opacity:.25}
+.key.del{background:var(--card);border:3px solid var(--line)}
+.opts{display:grid;gap:10px}
+.opt{background:var(--card);border:3px solid var(--line);border-radius:18px;padding:14px;font-size:1.25rem;font-weight:800}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#fff}
+.rules{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:8px 16px;margin-bottom:14px}
+.rule{display:block;width:100%;text-align:left;padding:10px 0;border-bottom:2px dashed var(--line)}
+.rule:last-child{border:0}
+.rule b{display:block;font-size:1.25rem;color:var(--a)}
+.rule span{opacity:.85}
+.hint{margin:0 0 14px;font-size:1rem;opacity:.85}
+.card.ok{border-color:var(--ok)}
+.shake{animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@media (prefers-reduced-motion:reduce){.shake{animation:none}.tile:active{transform:none}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const W=[['cat','мысық','🐱'],['dog','ит','🐶'],['bird','құс','🐦'],['fish','балық','🐟'],['horse','жылқы','🐴'],['cow','сиыр','🐮'],['sheep','қой','🐑'],['camel','түйе','🐫'],['rabbit','қоян','🐰'],['wolf','қасқыр','🐺'],['bear','аю','🐻'],['lion','арыстан','🦁']];
+const GQ=[
+{p:'<div class="kz big">Бұл мысық.</div>',o:['This is a cat.','I have a cat.','I like cats.'],a:'This is a cat.'},
+{p:'<div class="kz big">Менде ит бар.</div>',o:['I like a dog.','I have a dog.','This is a dog.'],a:'I have a dog.'},
+{p:'<div class="kz big">Маған жылқы ұнайды.</div>',o:['I like horses.','I have a horse.','This is a horse.'],a:'I like horses.'},
+{p:'<div class="em">🐟</div><div class="kz">Ол жүзе алады.</div>',o:['It can fly.','It can swim.','It can run.'],a:'It can swim.'},
+{p:'<div class="em">🐰</div><div class="en">I have a ___ .</div>',o:['rabbit','wolf','camel'],a:'rabbit'}
+];
+const app=document.getElementById('app');
+let stars=0,done={};
+try{const s=JSON.parse(localStorage.getItem('eng3')||'{}');stars=s.stars||0;done=s.done||{}}catch(e){}
+const save=()=>{try{localStorage.setItem('eng3',JSON.stringify({stars,done}))}catch(e){}};
+const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.85;speechSynthesis.speak(u)}catch(e){}};
+const shuf=a=>[...a].sort(()=>Math.random()-.5);
+const top=t=>`<div class="top"><button class="ghost" onclick="home()" aria-label="Басты бет">←</button><h2>${t}</h2><span class="st">⭐ ${stars}</span></div>`;
+
+function home(){
+  const m=[['words','🃏','Сөздер','Жаңа сөздерді үйрен'],['game','🔤','Ойын','Сөзді әріптерден құра'],['grammar','✏️','Грамматика','Қарапайым сөйлемдер'],['test','🏆','Тест','Біліміңді тексер']];
+  app.innerHTML=`<header><h1>Animals</h1><p class="kk">Жануарлар · 3-сынып</p><span class="st">⭐ ${stars}</span></header><div class="menu">`+
+  m.map(x=>`<button class="tile ${done[x[0]]?'done':''}" onclick="go('${x[0]}')"><span class="ic">${x[1]}</span><b>${x[2]}</b><small>${x[3]}</small></button>`).join('')+`</div>`;
+}
+const go=k=>({words,game,grammar,test}[k])();
+
+function fin(k,n){
+  stars+=n;done[k]=1;save();wi=0;
+  app.innerHTML=top('Жарайсың!')+`<div class="card ok"><div class="em">🎉</div><div class="en">Жарайсың!</div><div class="kz">+${n} ⭐</div></div><div class="nav"><button class="pri" style="margin:auto" onclick="home()">Басты бет</button></div>`;
+}
+
+let wi=0;
+function words(){
+  const w=W[wi];
+  app.innerHTML=top('Сөздер')+`<div class="card"><div class="em">${w[2]}</div><div class="en">${w[0]}</div><div class="kz">${w[1]}</div><button class="say" onclick="say('${w[0]}')">🔊 Тыңда</button></div>
+  <div class="nav"><button onclick="wi--;words()" ${wi?'':'disabled'}>Артқа</button><span>${wi+1} / ${W.length}</span>`+
+  (wi<W.length-1?`<button class="pri" onclick="wi++;words()">Келесі</button>`:`<button class="pri" onclick="fin('words',${W.length})">Дайын!</button>`)+`</div>`;
+}
+
+let gq,gi,gp,gl,gs;
+function game(){gq=shuf(W).slice(0,6);gi=0;gs=0;gnext()}
+function gnext(){if(gi>=gq.length)return fin('game',gs);gp=[];gl=shuf(gq[gi][0].split(''));gdraw()}
+function gdraw(){
+  const w=gq[gi],n=w[0].length;
+  let s='';for(let i=0;i<n;i++)s+=`<span class="slot">${gp[i]!==undefined?gl[gp[i]]:''}</span>`;
+  app.innerHTML=top('Ойын')+`<div class="card" id="gc"><div class="em">${w[2]}</div><div class="kz">${w[1]}</div><div class="slots">${s}</div></div><div class="keys">`+
+  gl.map((c,i)=>`<button class="key" ${gp.includes(i)?'disabled':''} onclick="gtap(${i})">${c}</button>`).join('')+`<button class="key del" onclick="gp.pop();gdraw()" aria-label="Өшіру">⌫</button></div>`;
+}
+function gtap(i){
+  gp.push(i);gdraw();
+  const w=gq[gi][0];
+  if(gp.length<w.length)return;
+  const got=gp.map(k=>gl[k]).join('');
+  const c=document.getElementById('gc');
+  if(got===w){gs++;gi++;c.classList.add('ok');say(w);setTimeout(gnext,900)}
+  else{c.classList.add('shake');setTimeout(()=>{gp=[];gdraw()},600)}
+}
+
+let Q,qi,qs,qk,qt;
+function quiz(k,t,list){Q=list;qi=0;qs=0;qk=k;qt=t;qdraw()}
+function qdraw(){
+  if(qi>=Q.length)return fin(qk,qs);
+  const q=Q[qi];
+  app.innerHTML=top(qt)+`<div class="card"><div class="prog">${qi+1} / ${Q.length}</div>${q.p}</div><div class="opts">`+
+  shuf(q.o).map(o=>`<button class="opt" data-v="${o}" onclick="qans(this)">${o}</button>`).join('')+`</div>`;
+  if(q.s)setTimeout(()=>say(q.s),300);
+}
+function qans(b){
+  const all=[...document.querySelectorAll('.opt')];
+  if(all[0].disabled)return;
+  all.forEach(x=>x.disabled=true);
+  const a=Q[qi].a;
+  if(b.dataset.v===a){b.classList.add('ok');qs++;say(a)}
+  else{b.classList.add('bad');all.find(x=>x.dataset.v===a).classList.add('ok')}
+  setTimeout(()=>{qi++;qdraw()},1000);
+}
+
+function grammar(){
+  const r=[['This is a cat.','Бұл мысық.','Затты көрсетеміз'],['I have a dog.','Менде ит бар.','Бізде не бар екенін айтамыз'],['I like horses.','Маған жылқы ұнайды.','Бірнешеу болса, -s қосамыз'],['It can swim.','Ол жүзе алады.','can — «алады» дегенді білдіреді']];
+  app.innerHTML=top('Грамматика')+`<p class="hint">Сөйлемді басып, тыңда:</p><div class="rules">`+
+  r.map(x=>`<button class="rule" data-t="${x[0]}" onclick="say(this.dataset.t)"><b>🔊 ${x[0]}</b><span>${x[1]} · ${x[2]}</span></button>`).join('')+
+  `</div><div class="nav"><button class="pri" style="margin:auto" onclick="quiz('grammar','Грамматика',GQ)">Жаттығу</button></div>`;
+}
+
+function test(){
+  const L=shuf(W).slice(0,6);
+  quiz('test','Тест',L.map((w,i)=>{
+    const o=[w[0],...shuf(W.filter(x=>x!==w)).slice(0,2).map(x=>x[0])];
+    if(i%3===0)return{p:`<div class="em">${w[2]}</div><div class="kz">Бұл не?</div>`,o,a:w[0]};
+    if(i%3===1)return{p:`<div class="kz big">${w[1]}</div>`,o,a:w[0]};
+    return{p:`<div class="kz">Тыңда да, дұрыс сөзді таңда</div><button class="say" onclick="say('${w[0]}')">🔊 Тыңда</button>`,o,a:w[0],s:w[0]};
+  }));
+}
+home();
+</script>
+</body>
+</html>
